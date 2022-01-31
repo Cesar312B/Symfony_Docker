@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HorasExtra index{% endblock %}
+
+{% block body %}
+    <h1>HorasExtra index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Actividad</th>
+                <th>HorasExtra</th>
+                <th>Detalle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for horas_extra in horas_extras %}
+            <tr>
+                <td>{{ horas_extra.actividad }}</td>
+
+                 <td>{{ horas_extra.valorhoras.horaextra}}</td>
+                 <td>{{ horas_extra.valorhoras.detalle }}</td>
+                <td>
+          
+                    <a href="{{ path('horas_extra_edit', {'id': horas_extra.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('horas_extra_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    volumes:
+      - .:/var/www/symfony
+    ports:
+      - 8000:8000
+    networks:
+      testing_net:
+           ipv4_address: 172.28.1.2
+
+  mysql:
+    build:
+      context: .
+      dockerfile: docker/mysql/Dockerfile
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - "3306:3306"  
+    environment:
+        MYSQL_ROOT_PASSWORD: 1234
+        MYSQL_DATABASE: prueba
+    volumes:
+      - mysql-db-data:/var/lib/mysql 
+      - "./script/base.sql:/docker-entrypoint-initdb.d/1.sql"
+    networks:
+      testing_net:
+           ipv4_address: 172.28.1.1
+
+networks:
+    testing_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.28.0.0/16
+
+
+volumes:
+   mysql-db-data:

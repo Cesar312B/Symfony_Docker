@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HorasExtra index{% endblock %}
+
+{% block body %}
+    <h1>HorasExtra {{user.Nombre}} {{user.Apellido}}</h1>
+
+ <table class="table">
+        <thead>
+            <tr>
+                <th>Actividad</th>
+                <th>HorasExtra</th>
+                <th>Detalle</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for horas_extra in horas_extras %}
+            <tr>
+                <td>{{ horas_extra.actividad }}</td>
+
+                 <td>{{ horas_extra.valorhoras.horaextra}}</td>
+                 <td>{{ horas_extra.valorhoras.detalle }}</td>
+            
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+      <a href="{{ path('user_index') }}">Regresar a la lista</a>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ValorHoras index{% endblock %}
+
+{% block body %}
+    <h1>ValorHoras index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Hora_extra</th>
+                <th>Detalle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for valor_hora in valor_horas %}
+            <tr>
+                <td>{{ valor_hora.id }}</td>
+                <td>{{ valor_hora.horaExtra }}</td>
+                <td>{{ valor_hora.detalle }}</td>
+                <td>
+                    <a href="{{ path('valor_horas_show', {'id': valor_hora.id}) }}">show</a>
+                    <a href="{{ path('valor_horas_edit', {'id': valor_hora.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('valor_horas_new') }}">Create new</a>
+{% endblock %}

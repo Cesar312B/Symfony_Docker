@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>User index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Puesto</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+   
+                <td>{{ user.puesto }}</td>
+                <td>{{ user.Nombre }}</td>
+                <td>{{ user.Apellido }}</td>
+                <td>
+                    <a href="{{ path('horas_extra_index', {'id': user.id}) }}">Horas Extra</a>
+                     {% if user.puesto == 'Empleado'  %}
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">Editar</a>
+                        
+          {% endif %}
+                
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

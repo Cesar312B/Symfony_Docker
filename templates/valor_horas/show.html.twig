@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ValorHoras{% endblock %}
+
+{% block body %}
+    <h1>ValorHoras</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ valor_hora.id }}</td>
+            </tr>
+            <tr>
+                <th>Hora_extra</th>
+                <td>{{ valor_hora.horaExtra }}</td>
+            </tr>
+            <tr>
+                <th>Detalle</th>
+                <td>{{ valor_hora.detalle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('valor_horas_index') }}">back to list</a>
+
+    <a href="{{ path('valor_horas_edit', {'id': valor_hora.id}) }}">edit</a>
+
+    {{ include('valor_horas/_delete_form.html.twig') }}
+{% endblock %}

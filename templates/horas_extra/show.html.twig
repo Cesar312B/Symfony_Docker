@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}HorasExtra{% endblock %}
+
+{% block body %}
+    <h1>HorasExtra</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ horas_extra.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('horas_extra_index') }}">back to list</a>
+
+    <a href="{{ path('horas_extra_edit', {'id': horas_extra.id}) }}">edit</a>
+
+    {{ include('horas_extra/_delete_form.html.twig') }}
+{% endblock %}
